@@ -68,7 +68,7 @@
                     <rect x="8" y="2" width="8" height="4" rx="1" />
                     <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
                 </svg>
-                Book a Photographer
+                Book Photographer
             </a>
             <a href="#services" id="heroServicesBtn"
                 class="group inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/15 sm:w-auto sm:text-base">
