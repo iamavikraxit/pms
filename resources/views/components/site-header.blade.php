@@ -32,24 +32,47 @@
             {{-- ── Desktop Navigation ── --}}
             {{-- Changed from md:flex to lg:flex --}}
             <nav class="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+
+                {{-- Home Link --}}
                 <a href="{{ route('home') }}" id="navHome"
-                    class="pms-nav-link group relative px-4 py-2 rounded-xl text-sm font-semibold text-slate-900 transition-colors duration-200 hover:bg-slate-900/5">
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-slate-900/5 {{ request()->routeIs('home') ? 'font-semibold text-slate-900' : 'font-medium text-slate-500 hover:text-slate-900' }}">
                     Home
-                    <span
-                        class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-gradient-to-r from-rose-500 to-rose-400 opacity-100"></span>
+                    @if (request()->routeIs('home'))
+                        <span
+                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-gradient-to-r from-rose-500 to-rose-400 opacity-100"></span>
+                    @endif
                 </a>
+
+                {{-- Services Link --}}
                 <a href="{{ url('/services') }}" id="navServices"
-                    class="relative px-4 py-2 rounded-xl text-sm font-medium text-slate-500 transition-colors duration-200 hover:text-slate-900 hover:bg-slate-900/5">
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-slate-900/5 {{ request()->is('services') ? 'font-semibold text-slate-900' : 'font-medium text-slate-500 hover:text-slate-900' }}">
                     Services
+                    @if (request()->is('services'))
+                        <span
+                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-gradient-to-r from-rose-500 to-rose-400 opacity-100"></span>
+                    @endif
                 </a>
+
+                {{-- Portfolio Link --}}
                 <a href="{{ url('/portfolio') }}" id="navPortfolio"
-                    class="relative px-4 py-2 rounded-xl text-sm font-medium text-slate-500 transition-colors duration-200 hover:text-slate-900 hover:bg-slate-900/5">
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-slate-900/5 {{ request()->is('portfolio') ? 'font-semibold text-slate-900' : 'font-medium text-slate-500 hover:text-slate-900' }}">
                     Portfolio
+                    @if (request()->is('portfolio'))
+                        <span
+                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-gradient-to-r from-rose-500 to-rose-400 opacity-100"></span>
+                    @endif
                 </a>
-                <a href="{{ url('/contact') }}" id="navContact"
-                    class="relative px-4 py-2 rounded-xl text-sm font-medium text-slate-500 transition-colors duration-200 hover:text-slate-900 hover:bg-slate-900/5">
+
+                {{-- Contact Link --}}
+                <a href="{{ route('contact') }}" id="navContact"
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-slate-900/5 {{ request()->routeIs('contact') ? 'font-semibold text-slate-900' : 'font-medium text-slate-500 hover:text-slate-900' }}">
                     Contact
+                    @if (request()->routeIs('contact'))
+                        <span
+                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-gradient-to-r from-rose-500 to-rose-400 opacity-100"></span>
+                    @endif
                 </a>
+
             </nav>
 
             {{-- ── Desktop Right ── --}}
@@ -85,7 +108,8 @@
                         group-hover:visible group-hover:pointer-events-auto group-hover:opacity-100 group-hover:scale-100
                         before:absolute before:-top-[10px] before:left-0 before:h-[10px] before:w-full before:content-['']">
 
-                        <p class="px-3 pt-1.5 pb-1 text-[0.65rem] font-bold uppercase tracking-widest text-slate-400">Account</p>
+                        <p class="px-3 pt-1.5 pb-1 text-[0.65rem] font-bold uppercase tracking-widest text-slate-400">
+                            Account</p>
                         <a href="{{ url('/login') }}" id="authLoginLink" role="menuitem"
                             class="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors duration-150 hover:bg-slate-50 hover:text-slate-900">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 flex-shrink-0"
@@ -187,7 +211,7 @@
                 Portfolio
             </a>
 
-            <a href="{{ url('/contact') }}" id="mobileNavContact"
+            <a href="{{ route('contact') }}" id="mobileNavContact"
                 class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-medium text-slate-600 transition-colors duration-150 hover:bg-slate-50 hover:text-slate-900">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-slate-400 flex-shrink-0"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
