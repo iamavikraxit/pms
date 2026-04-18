@@ -1,10 +1,12 @@
 {{-- PixelMoment Studio — Site Header (Tailwind CSS v4) --}}
 
 <header id="pmsHeader"
-    class="sticky top-0 z-50 w-full border-b border-white/40 bg-white/75 shadow-sm backdrop-blur-xl backdrop-saturate-200 transition-all duration-300">
+    class="sticky top-0 z-50 w-full border-b border-zinc-100/80 bg-white/85 shadow-sm backdrop-blur-xl backdrop-saturate-200 transition-all duration-300">
+
     {{-- ===== Top bar / announcement strip ===== --}}
+    {{-- Soft blush background with elegant rose text --}}
     <div
-        class="w-full bg-gradient-to-r from-slate-900 via-rose-600 to-slate-900 py-1.5 text-center text-xs font-semibold tracking-widest text-white/90 uppercase">
+        class="w-full bg-rose-50/80 py-1.5 text-center text-[0.65rem] font-bold tracking-[0.2em] text-rose-600 uppercase border-b border-rose-100/50">
         ✦ Book your dream session — limited slots available ✦
     </div>
 
@@ -16,75 +18,72 @@
             <a href="{{ url('/') }}" id="pmsLogo" class="flex flex-shrink-0 items-center gap-3 group">
                 {{-- Badge --}}
                 <div
-                    class="relative flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-[14px] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 shadow-lg shadow-slate-900/30 ring-1 ring-white/10 transition-transform duration-200 group-hover:scale-105">
-                    <span class="relative z-10 text-[0.6rem] font-black tracking-[0.2em] text-white">PMS</span>
-                    <div class="absolute inset-0 bg-gradient-to-br from-rose-500/30 to-transparent"></div>
+                    class="relative flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-[14px] bg-gradient-to-br from-rose-100 to-orange-50 shadow-sm ring-1 ring-rose-200/50 transition-transform duration-200 group-hover:scale-105">
+                    <span class="relative z-10 text-[0.65rem] font-black tracking-[0.2em] text-rose-500">PMS</span>
                 </div>
                 {{-- Text --}}
                 <div class="hidden sm:block">
-                    <p class="text-[0.6rem] font-bold uppercase tracking-[0.22em] text-rose-500 leading-none">Photo
+                    <p class="text-[0.6rem] font-bold uppercase tracking-[0.22em] text-rose-400 leading-none">Photo
                         Booking</p>
-                    <p class="text-[1.05rem] font-extrabold tracking-tight text-slate-900 leading-snug">PixelMoment
+                    <p class="text-[1.05rem] font-extrabold tracking-tight text-zinc-900 leading-snug">PixelMoment
                         Studio</p>
                 </div>
             </a>
 
             {{-- ── Desktop Navigation ── --}}
-            {{-- Changed from md:flex to lg:flex --}}
             <nav class="hidden lg:flex items-center gap-1" aria-label="Main navigation">
 
                 {{-- Home Link --}}
                 <a href="{{ route('home') }}" id="navHome"
-                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-slate-900/5 {{ request()->routeIs('home') ? 'font-semibold text-slate-900' : 'font-medium text-slate-500 hover:text-slate-900' }}">
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-zinc-50 {{ request()->routeIs('home') ? 'font-semibold text-zinc-900' : 'font-medium text-zinc-500 hover:text-zinc-900' }}">
                     Home
                     @if (request()->routeIs('home'))
                         <span
-                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-gradient-to-r from-rose-500 to-rose-400 opacity-100"></span>
+                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-rose-400 opacity-100"></span>
                     @endif
                 </a>
 
                 {{-- Services Link --}}
-                <a href="{{ url('/services') }}" id="navServices"
-                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-slate-900/5 {{ request()->is('services') ? 'font-semibold text-slate-900' : 'font-medium text-slate-500 hover:text-slate-900' }}">
+                <a href="{{ route('services') }}" id="navServices"
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-zinc-50 {{ request()->routeIs('services') ? 'font-semibold text-zinc-900' : 'font-medium text-zinc-500 hover:text-zinc-900' }}">
                     Services
-                    @if (request()->is('services'))
+                    @if (request()->routeIs('services'))
                         <span
-                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-gradient-to-r from-rose-500 to-rose-400 opacity-100"></span>
+                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-rose-400 opacity-100"></span>
                     @endif
                 </a>
 
                 {{-- Portfolio Link --}}
-                <a href="{{ url('/portfolio') }}" id="navPortfolio"
-                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-slate-900/5 {{ request()->is('portfolio') ? 'font-semibold text-slate-900' : 'font-medium text-slate-500 hover:text-slate-900' }}">
+                <a href="{{ route('portfolio') }}" id="navPortfolio"
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-zinc-50 {{ request()->routeIs('portfolio') ? 'font-semibold text-zinc-900' : 'font-medium text-zinc-500 hover:text-zinc-900' }}">
                     Portfolio
-                    @if (request()->is('portfolio'))
+                    @if (request()->routeIs('portfolio'))
                         <span
-                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-gradient-to-r from-rose-500 to-rose-400 opacity-100"></span>
+                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-rose-400 opacity-100"></span>
                     @endif
                 </a>
 
                 {{-- Contact Link --}}
                 <a href="{{ route('contact') }}" id="navContact"
-                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-slate-900/5 {{ request()->routeIs('contact') ? 'font-semibold text-slate-900' : 'font-medium text-slate-500 hover:text-slate-900' }}">
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-zinc-50 {{ request()->routeIs('contact') ? 'font-semibold text-zinc-900' : 'font-medium text-zinc-500 hover:text-zinc-900' }}">
                     Contact
                     @if (request()->routeIs('contact'))
                         <span
-                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-gradient-to-r from-rose-500 to-rose-400 opacity-100"></span>
+                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-rose-400 opacity-100"></span>
                     @endif
                 </a>
 
             </nav>
 
             {{-- ── Desktop Right ── --}}
-            {{-- Changed from md:flex to lg:flex --}}
             <div class="hidden lg:flex items-center gap-3">
 
                 {{-- Auth Dropdown --}}
                 <div class="relative group" id="authDropdown">
                     <button id="authTrigger" aria-haspopup="true" aria-expanded="false"
-                        class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:border-slate-300 hover:bg-white hover:shadow-md focus:outline-none">
+                        class="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 shadow-sm transition-all duration-200 hover:border-zinc-300 hover:bg-zinc-50 focus:outline-none">
                         {{-- User icon --}}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-500" viewBox="0 0 24 24"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-400" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round">
                             <circle cx="12" cy="8" r="4" />
@@ -93,7 +92,7 @@
                         Account
                         {{-- Chevron --}}
                         <svg id="authChevron" xmlns="http://www.w3.org/2000/svg"
-                            class="h-3.5 w-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180"
+                            class="h-3.5 w-3.5 text-zinc-400 transition-transform duration-200 group-hover:rotate-180"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                             stroke-linecap="round" stroke-linejoin="round">
                             <path d="m6 9 6 6 6-6" />
@@ -101,18 +100,17 @@
                     </button>
 
                     {{-- Dropdown panel --}}
-                    {{-- Added group-hover states and an invisible 'before' pseudo-element to act as a hover bridge --}}
                     <div id="authMenu" role="menu"
-                        class="absolute right-0 top-[calc(100%+10px)] min-w-[220px] origin-top-right rounded-2xl border border-slate-100 bg-white/95 p-2 shadow-2xl shadow-slate-900/10 backdrop-blur-xl transition-all duration-200 
-                        invisible pointer-events-none opacity-0 scale-95 
+                        class="absolute right-0 top-[calc(100%+10px)] min-w-[220px] origin-top-right rounded-2xl border border-zinc-100 bg-white/95 p-2 shadow-xl shadow-zinc-900/5 backdrop-blur-xl transition-all duration-200
+                        invisible pointer-events-none opacity-0 scale-95
                         group-hover:visible group-hover:pointer-events-auto group-hover:opacity-100 group-hover:scale-100
                         before:absolute before:-top-[10px] before:left-0 before:h-[10px] before:w-full before:content-['']">
 
-                        <p class="px-3 pt-1.5 pb-1 text-[0.65rem] font-bold uppercase tracking-widest text-slate-400">
+                        <p class="px-3 pt-1.5 pb-1 text-[0.65rem] font-bold uppercase tracking-widest text-zinc-400">
                             Account</p>
                         <a href="{{ url('/login') }}" id="authLoginLink" role="menuitem"
-                            class="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors duration-150 hover:bg-slate-50 hover:text-slate-900">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 flex-shrink-0"
+                            class="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-700 transition-colors duration-150 hover:bg-zinc-50 hover:text-zinc-900">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-400 flex-shrink-0"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
@@ -122,11 +120,12 @@
                             Sign In
                         </a>
 
-                        <div class="my-1.5 mx-3 h-px bg-slate-100"></div>
+                        <div class="my-1.5 mx-3 h-px bg-zinc-100"></div>
 
+                        {{-- High contrast register button for the dropdown --}}
                         <a href="{{ url('/register') }}" id="authRegisterLink" role="menuitem"
-                            class="mt-1 flex items-center gap-2.5 rounded-xl bg-gradient-to-br from-rose-500 to-rose-600 px-3 py-2.5 text-sm font-semibold text-white shadow-md shadow-rose-500/25 transition-all duration-150 hover:from-rose-600 hover:to-rose-700 hover:shadow-rose-500/35">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-rose-100 flex-shrink-0"
+                            class="mt-1 flex items-center gap-2.5 rounded-xl bg-zinc-900 px-3 py-2.5 text-sm font-semibold text-white shadow-md shadow-zinc-900/10 transition-all duration-150 hover:bg-zinc-800 hover:shadow-zinc-900/20">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-300 flex-shrink-0"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -139,11 +138,12 @@
                     </div>
                 </div>
 
-                {{-- Book Now CTA --}}
+                {{-- Book Now CTA - Bold Editorial Black --}}
                 <a href="{{ url('/contact') }}" id="bookNowBtn"
-                    class="inline-flex items-center gap-2 rounded-full bg-gradient-to-br from-slate-900 to-slate-800 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-slate-900/20 ring-1 ring-white/10 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-slate-900/30">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    class="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-zinc-900/15 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-800 hover:shadow-xl hover:shadow-zinc-900/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-rose-300" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
                         <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
                         <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
                     </svg>
@@ -152,32 +152,30 @@
             </div>
 
             {{-- ── Mobile Hamburger ── --}}
-            {{-- Changed from flex md:hidden to flex lg:hidden --}}
             <button id="mobileMenuBtn" aria-label="Toggle navigation" aria-expanded="false"
                 aria-controls="mobileMenu"
-                class="flex lg:hidden h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white/80 shadow-sm transition-colors duration-200 hover:bg-slate-50 focus:outline-none">
+                class="flex lg:hidden h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-white shadow-sm transition-colors duration-200 hover:bg-zinc-50 focus:outline-none">
                 {{-- Hamburger icon lines --}}
                 <div id="hamburgerIcon" class="flex flex-col gap-[5px]">
                     <span id="hLine1"
-                        class="block h-0.5 w-[18px] rounded-full bg-slate-800 transition-all duration-300 origin-center"></span>
+                        class="block h-0.5 w-[18px] rounded-full bg-zinc-800 transition-all duration-300 origin-center"></span>
                     <span id="hLine2"
-                        class="block h-0.5 w-[18px] rounded-full bg-slate-800 transition-all duration-300"></span>
+                        class="block h-0.5 w-[18px] rounded-full bg-zinc-800 transition-all duration-300"></span>
                     <span id="hLine3"
-                        class="block h-0.5 w-[18px] rounded-full bg-slate-800 transition-all duration-300 origin-center"></span>
+                        class="block h-0.5 w-[18px] rounded-full bg-zinc-800 transition-all duration-300 origin-center"></span>
                 </div>
             </button>
         </div>
     </div>
 
     {{-- ===== Mobile Menu ===== --}}
-    {{-- Changed from hidden md:hidden to hidden lg:hidden --}}
     <div id="mobileMenu" aria-hidden="true"
-        class="hidden lg:hidden w-full border-t border-slate-100 bg-white/97 backdrop-blur-xl">
+        class="hidden lg:hidden w-full border-t border-zinc-100 bg-white/98 backdrop-blur-xl">
         <div class="w-full px-4 py-4 flex flex-col gap-1">
 
             {{-- Nav links --}}
             <a href="{{ route('home') }}" id="mobileNavHome"
-                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-semibold text-slate-900 bg-slate-50 transition-colors duration-150 hover:bg-slate-100">
+                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-semibold text-zinc-900 bg-rose-50/50 transition-colors duration-150 hover:bg-rose-50">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-rose-400 flex-shrink-0"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -187,9 +185,9 @@
                 Home
             </a>
 
-            <a href="{{ url('/services') }}" id="mobileNavServices"
-                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-medium text-slate-600 transition-colors duration-150 hover:bg-slate-50 hover:text-slate-900">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-slate-400 flex-shrink-0"
+            <a href="{{ route('services') }}" id="mobileNavServices"
+                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-medium text-zinc-600 transition-colors duration-150 hover:bg-zinc-50 hover:text-zinc-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-400 flex-shrink-0"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="3" />
@@ -199,9 +197,9 @@
                 Services
             </a>
 
-            <a href="{{ url('/portfolio') }}" id="mobileNavPortfolio"
-                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-medium text-slate-600 transition-colors duration-150 hover:bg-slate-50 hover:text-slate-900">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-slate-400 flex-shrink-0"
+            <a href="{{ route('portfolio') }}" id="mobileNavPortfolio"
+                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-medium text-zinc-600 transition-colors duration-150 hover:bg-zinc-50 hover:text-zinc-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-400 flex-shrink-0"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
@@ -212,8 +210,8 @@
             </a>
 
             <a href="{{ route('contact') }}" id="mobileNavContact"
-                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-medium text-slate-600 transition-colors duration-150 hover:bg-slate-50 hover:text-slate-900">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-slate-400 flex-shrink-0"
+                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-medium text-zinc-600 transition-colors duration-150 hover:bg-zinc-50 hover:text-zinc-900">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-400 flex-shrink-0"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path
@@ -223,13 +221,13 @@
             </a>
 
             {{-- Divider --}}
-            <div class="my-2 h-px bg-slate-100 mx-2"></div>
+            <div class="my-2 h-px bg-zinc-100 mx-2"></div>
 
             {{-- Auth section --}}
-            <p class="px-4 text-[0.65rem] font-bold uppercase tracking-widest text-slate-400">Account</p>
+            <p class="px-4 text-[0.65rem] font-bold uppercase tracking-widest text-zinc-400">Account</p>
 
             <a href="{{ url('/login') }}" id="mobileLoginBtn"
-                class="flex items-center justify-center gap-2.5 rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-[0.9375rem] font-semibold text-slate-800 shadow-sm transition-all duration-200 hover:bg-slate-50 hover:shadow-md">
+                class="flex items-center justify-center gap-2.5 rounded-2xl border border-zinc-200 bg-white px-4 py-3.5 text-[0.9375rem] font-semibold text-zinc-800 shadow-sm transition-all duration-200 hover:bg-zinc-50">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
@@ -240,8 +238,8 @@
             </a>
 
             <a href="{{ url('/register') }}" id="mobileRegisterBtn"
-                class="flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-600 px-4 py-3.5 text-[0.9375rem] font-bold text-white shadow-lg shadow-rose-500/30 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-rose-500/40">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-rose-100" viewBox="0 0 24 24"
+                class="flex items-center justify-center gap-2.5 rounded-2xl bg-zinc-900 px-4 py-3.5 text-[0.9375rem] font-bold text-white shadow-lg shadow-zinc-900/15 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-800 hover:shadow-xl hover:shadow-zinc-900/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-300" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -254,9 +252,10 @@
 
             {{-- Book Now mobile CTA --}}
             <a href="{{ url('/contact') }}" id="mobileBookNow"
-                class="mt-1 flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 px-4 py-3.5 text-[0.9375rem] font-bold text-white shadow-lg shadow-slate-900/25 transition-all duration-200 hover:-translate-y-0.5">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                class="mt-1 flex items-center justify-center gap-2.5 rounded-2xl bg-white border-2 border-zinc-900 px-4 py-3.5 text-[0.9375rem] font-bold text-zinc-900 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-50">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-rose-400" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
                     <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
                     <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
                 </svg>
@@ -268,7 +267,6 @@
         </div>
     </div>
 </header>
-
 @push('scripts')
     <script>
         (function() {

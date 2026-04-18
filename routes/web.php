@@ -9,3 +9,11 @@ Route::get('/', function () {
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
+
+Route::get('/services', function () {
+    return view('pages.services');
+})->name('services');
+
+Route::get('/portfolio', function () {
+    return view('pages.portfolio');
+})->name('portfolio');
