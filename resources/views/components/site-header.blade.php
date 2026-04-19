@@ -1,12 +1,12 @@
-{{-- PixelMoment Studio — Site Header (Tailwind CSS v4) --}}
+{{-- PixelMoment Studio — Carbon & Cyber Lime Header (Tailwind CSS v4) --}}
 
 <header id="pmsHeader"
-    class="sticky top-0 z-50 w-full border-b border-zinc-100/80 bg-white/85 shadow-sm backdrop-blur-xl backdrop-saturate-200 transition-all duration-300">
+    class="sticky top-0 z-50 w-full border-b border-white/5 bg-zinc-950/90 shadow-2xl backdrop-blur-xl transition-all duration-300">
 
     {{-- ===== Top bar / announcement strip ===== --}}
-    {{-- Soft blush background with elegant rose text --}}
+    {{-- High-visibility lime background with deep carbon text --}}
     <div
-        class="w-full bg-rose-50/80 py-1.5 text-center text-[0.65rem] font-bold tracking-[0.2em] text-rose-600 uppercase border-b border-rose-100/50">
+        class="w-full bg-lime-400 py-1.5 text-center text-[0.65rem] font-black tracking-[0.2em] text-zinc-950 uppercase border-b border-white/5">
         ✦ Book your dream session — limited slots available ✦
     </div>
 
@@ -18,14 +18,14 @@
             <a href="{{ url('/') }}" id="pmsLogo" class="flex flex-shrink-0 items-center gap-3 group">
                 {{-- Badge --}}
                 <div
-                    class="relative flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-[14px] bg-gradient-to-br from-rose-100 to-orange-50 shadow-sm ring-1 ring-rose-200/50 transition-transform duration-200 group-hover:scale-105">
-                    <span class="relative z-10 text-[0.65rem] font-black tracking-[0.2em] text-rose-500">PMS</span>
+                    class="relative flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-[14px] bg-zinc-900 shadow-inner ring-1 ring-white/10 transition-transform duration-200 group-hover:scale-105 group-hover:ring-lime-400/50">
+                    <span class="relative z-10 text-[0.65rem] font-black tracking-[0.2em] text-lime-400">PM</span>
                 </div>
                 {{-- Text --}}
                 <div class="hidden sm:block">
-                    <p class="text-[0.6rem] font-bold uppercase tracking-[0.22em] text-rose-400 leading-none">Photo
+                    <p class="text-[0.6rem] font-bold uppercase tracking-[0.22em] text-zinc-500 leading-none">Photo
                         Booking</p>
-                    <p class="text-[1.05rem] font-extrabold tracking-tight text-zinc-900 leading-snug">PixelMoment
+                    <p class="text-[1.05rem] font-extrabold tracking-tight text-white leading-snug">PixelMoment
                         Studio</p>
                 </div>
             </a>
@@ -35,41 +35,41 @@
 
                 {{-- Home Link --}}
                 <a href="{{ route('home') }}" id="navHome"
-                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-zinc-50 {{ request()->routeIs('home') ? 'font-semibold text-zinc-900' : 'font-medium text-zinc-500 hover:text-zinc-900' }}">
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 {{ request()->routeIs('home') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
                     Home
                     @if (request()->routeIs('home'))
                         <span
-                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-rose-400 opacity-100"></span>
+                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-lime-400 opacity-100"></span>
                     @endif
                 </a>
 
                 {{-- Services Link --}}
                 <a href="{{ route('services') }}" id="navServices"
-                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-zinc-50 {{ request()->routeIs('services') ? 'font-semibold text-zinc-900' : 'font-medium text-zinc-500 hover:text-zinc-900' }}">
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 {{ request()->routeIs('services') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
                     Services
                     @if (request()->routeIs('services'))
                         <span
-                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-rose-400 opacity-100"></span>
+                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-lime-400 opacity-100"></span>
                     @endif
                 </a>
 
                 {{-- Portfolio Link --}}
                 <a href="{{ route('portfolio') }}" id="navPortfolio"
-                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-zinc-50 {{ request()->routeIs('portfolio') ? 'font-semibold text-zinc-900' : 'font-medium text-zinc-500 hover:text-zinc-900' }}">
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 {{ request()->routeIs('portfolio') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
                     Portfolio
                     @if (request()->routeIs('portfolio'))
                         <span
-                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-rose-400 opacity-100"></span>
+                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-lime-400 opacity-100"></span>
                     @endif
                 </a>
 
                 {{-- Contact Link --}}
                 <a href="{{ route('contact') }}" id="navContact"
-                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-zinc-50 {{ request()->routeIs('contact') ? 'font-semibold text-zinc-900' : 'font-medium text-zinc-500 hover:text-zinc-900' }}">
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 {{ request()->routeIs('contact') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
                     Contact
                     @if (request()->routeIs('contact'))
                         <span
-                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-rose-400 opacity-100"></span>
+                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-lime-400 opacity-100"></span>
                     @endif
                 </a>
 
@@ -81,9 +81,9 @@
                 {{-- Auth Dropdown --}}
                 <div class="relative group" id="authDropdown">
                     <button id="authTrigger" aria-haspopup="true" aria-expanded="false"
-                        class="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-700 shadow-sm transition-all duration-200 hover:border-zinc-300 hover:bg-zinc-50 focus:outline-none">
+                        class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-zinc-900 px-4 py-2 text-sm font-semibold text-zinc-300 shadow-sm transition-all duration-200 hover:border-white/20 hover:bg-zinc-800 focus:outline-none">
                         {{-- User icon --}}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-400" viewBox="0 0 24 24"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-500" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round">
                             <circle cx="12" cy="8" r="4" />
@@ -92,7 +92,7 @@
                         Account
                         {{-- Chevron --}}
                         <svg id="authChevron" xmlns="http://www.w3.org/2000/svg"
-                            class="h-3.5 w-3.5 text-zinc-400 transition-transform duration-200 group-hover:rotate-180"
+                            class="h-3.5 w-3.5 text-zinc-500 transition-transform duration-200 group-hover:rotate-180"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                             stroke-linecap="round" stroke-linejoin="round">
                             <path d="m6 9 6 6 6-6" />
@@ -101,16 +101,16 @@
 
                     {{-- Dropdown panel --}}
                     <div id="authMenu" role="menu"
-                        class="absolute right-0 top-[calc(100%+10px)] min-w-[220px] origin-top-right rounded-2xl border border-zinc-100 bg-white/95 p-2 shadow-xl shadow-zinc-900/5 backdrop-blur-xl transition-all duration-200
+                        class="absolute right-0 top-[calc(100%+10px)] min-w-[220px] origin-top-right rounded-2xl border border-white/5 bg-zinc-900/95 p-2 shadow-2xl backdrop-blur-xl transition-all duration-200
                         invisible pointer-events-none opacity-0 scale-95
                         group-hover:visible group-hover:pointer-events-auto group-hover:opacity-100 group-hover:scale-100
                         before:absolute before:-top-[10px] before:left-0 before:h-[10px] before:w-full before:content-['']">
 
-                        <p class="px-3 pt-1.5 pb-1 text-[0.65rem] font-bold uppercase tracking-widest text-zinc-400">
+                        <p class="px-3 pt-1.5 pb-1 text-[0.65rem] font-bold uppercase tracking-widest text-zinc-500">
                             Account</p>
                         <a href="{{ url('/login') }}" id="authLoginLink" role="menuitem"
-                            class="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-700 transition-colors duration-150 hover:bg-zinc-50 hover:text-zinc-900">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-400 flex-shrink-0"
+                            class="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-300 transition-colors duration-150 hover:bg-white/5 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-500 flex-shrink-0"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
@@ -120,12 +120,12 @@
                             Sign In
                         </a>
 
-                        <div class="my-1.5 mx-3 h-px bg-zinc-100"></div>
+                        <div class="my-1.5 mx-3 h-px bg-white/5"></div>
 
-                        {{-- High contrast register button for the dropdown --}}
+                        {{-- High contrast register button (Cyber Lime) --}}
                         <a href="{{ url('/register') }}" id="authRegisterLink" role="menuitem"
-                            class="mt-1 flex items-center gap-2.5 rounded-xl bg-zinc-900 px-3 py-2.5 text-sm font-semibold text-white shadow-md shadow-zinc-900/10 transition-all duration-150 hover:bg-zinc-800 hover:shadow-zinc-900/20">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-300 flex-shrink-0"
+                            class="mt-1 flex items-center gap-2.5 rounded-xl bg-white px-3 py-2.5 text-sm font-bold text-zinc-950 shadow-md transition-all duration-150 hover:bg-lime-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-900 flex-shrink-0"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -138,10 +138,10 @@
                     </div>
                 </div>
 
-                {{-- Book Now CTA - Bold Editorial Black --}}
+                {{-- Book Now CTA - Bold White --}}
                 <a href="{{ url('/contact') }}" id="bookNowBtn"
-                    class="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-zinc-900/15 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-800 hover:shadow-xl hover:shadow-zinc-900/20">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-rose-300" viewBox="0 0 24 24"
+                    class="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-black text-zinc-950 shadow-lg shadow-white/5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-lime-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-zinc-900" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                         stroke-linejoin="round">
                         <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
@@ -154,15 +154,15 @@
             {{-- ── Mobile Hamburger ── --}}
             <button id="mobileMenuBtn" aria-label="Toggle navigation" aria-expanded="false"
                 aria-controls="mobileMenu"
-                class="flex lg:hidden h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-white shadow-sm transition-colors duration-200 hover:bg-zinc-50 focus:outline-none">
+                class="flex lg:hidden h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-zinc-900 shadow-sm transition-colors duration-200 hover:bg-zinc-800 focus:outline-none">
                 {{-- Hamburger icon lines --}}
                 <div id="hamburgerIcon" class="flex flex-col gap-[5px]">
                     <span id="hLine1"
-                        class="block h-0.5 w-[18px] rounded-full bg-zinc-800 transition-all duration-300 origin-center"></span>
+                        class="block h-0.5 w-[18px] rounded-full bg-white transition-all duration-300 origin-center"></span>
                     <span id="hLine2"
-                        class="block h-0.5 w-[18px] rounded-full bg-zinc-800 transition-all duration-300"></span>
+                        class="block h-0.5 w-[18px] rounded-full bg-white transition-all duration-300"></span>
                     <span id="hLine3"
-                        class="block h-0.5 w-[18px] rounded-full bg-zinc-800 transition-all duration-300 origin-center"></span>
+                        class="block h-0.5 w-[18px] rounded-full bg-white transition-all duration-300 origin-center"></span>
                 </div>
             </button>
         </div>
@@ -170,13 +170,13 @@
 
     {{-- ===== Mobile Menu ===== --}}
     <div id="mobileMenu" aria-hidden="true"
-        class="hidden lg:hidden w-full border-t border-zinc-100 bg-white/98 backdrop-blur-xl">
+        class="hidden lg:hidden w-full border-t border-white/5 bg-zinc-950/98 backdrop-blur-xl">
         <div class="w-full px-4 py-4 flex flex-col gap-1">
 
             {{-- Nav links --}}
             <a href="{{ route('home') }}" id="mobileNavHome"
-                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-semibold text-zinc-900 bg-rose-50/50 transition-colors duration-150 hover:bg-rose-50">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-rose-400 flex-shrink-0"
+                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-semibold text-white bg-white/5 transition-colors duration-150 hover:bg-white/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-lime-400 flex-shrink-0"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -186,8 +186,8 @@
             </a>
 
             <a href="{{ route('services') }}" id="mobileNavServices"
-                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-medium text-zinc-600 transition-colors duration-150 hover:bg-zinc-50 hover:text-zinc-900">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-400 flex-shrink-0"
+                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-medium text-zinc-400 transition-colors duration-150 hover:bg-white/5 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-500 flex-shrink-0"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="3" />
@@ -198,8 +198,8 @@
             </a>
 
             <a href="{{ route('portfolio') }}" id="mobileNavPortfolio"
-                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-medium text-zinc-600 transition-colors duration-150 hover:bg-zinc-50 hover:text-zinc-900">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-400 flex-shrink-0"
+                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-medium text-zinc-400 transition-colors duration-150 hover:bg-white/5 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-500 flex-shrink-0"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
@@ -210,8 +210,8 @@
             </a>
 
             <a href="{{ route('contact') }}" id="mobileNavContact"
-                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-medium text-zinc-600 transition-colors duration-150 hover:bg-zinc-50 hover:text-zinc-900">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-400 flex-shrink-0"
+                class="flex items-center gap-3 rounded-2xl px-4 py-3 text-[0.9375rem] font-medium text-zinc-400 transition-colors duration-150 hover:bg-white/5 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-500 flex-shrink-0"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path
@@ -221,14 +221,14 @@
             </a>
 
             {{-- Divider --}}
-            <div class="my-2 h-px bg-zinc-100 mx-2"></div>
+            <div class="my-2 h-px bg-white/5 mx-2"></div>
 
             {{-- Auth section --}}
-            <p class="px-4 text-[0.65rem] font-bold uppercase tracking-widest text-zinc-400">Account</p>
+            <p class="px-4 text-[0.65rem] font-bold uppercase tracking-widest text-zinc-600">Account</p>
 
             <a href="{{ url('/login') }}" id="mobileLoginBtn"
-                class="flex items-center justify-center gap-2.5 rounded-2xl border border-zinc-200 bg-white px-4 py-3.5 text-[0.9375rem] font-semibold text-zinc-800 shadow-sm transition-all duration-200 hover:bg-zinc-50">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none"
+                class="flex items-center justify-center gap-2.5 rounded-2xl border border-white/10 bg-zinc-900 px-4 py-3.5 text-[0.9375rem] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-zinc-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-400" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
                     <polyline points="10 17 15 12 10 7" />
@@ -238,8 +238,8 @@
             </a>
 
             <a href="{{ url('/register') }}" id="mobileRegisterBtn"
-                class="flex items-center justify-center gap-2.5 rounded-2xl bg-zinc-900 px-4 py-3.5 text-[0.9375rem] font-bold text-white shadow-lg shadow-zinc-900/15 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-800 hover:shadow-xl hover:shadow-zinc-900/20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-300" viewBox="0 0 24 24"
+                class="flex items-center justify-center gap-2.5 rounded-2xl bg-white px-4 py-3.5 text-[0.9375rem] font-black text-zinc-950 shadow-lg shadow-white/5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-lime-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-900" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -252,8 +252,8 @@
 
             {{-- Book Now mobile CTA --}}
             <a href="{{ url('/contact') }}" id="mobileBookNow"
-                class="mt-1 flex items-center justify-center gap-2.5 rounded-2xl bg-white border-2 border-zinc-900 px-4 py-3.5 text-[0.9375rem] font-bold text-zinc-900 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-50">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-rose-400" viewBox="0 0 24 24"
+                class="mt-1 flex items-center justify-center gap-2.5 rounded-2xl bg-transparent border-2 border-lime-400 px-4 py-3.5 text-[0.9375rem] font-black text-lime-400 transition-all duration-200 hover:-translate-y-0.5 hover:bg-lime-400/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-lime-400" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                     stroke-linejoin="round">
                     <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
@@ -267,6 +267,8 @@
         </div>
     </div>
 </header>
+
+{{-- JavaScript for header interactions (scroll shadow, auth dropdown, mobile menu)  --}}
 @push('scripts')
     <script>
         (function() {
