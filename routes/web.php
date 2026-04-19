@@ -6,7 +6,7 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
-Route::get('/contact', function () {
+Route::get('/contacts', function () {
     return view('pages.contact');
 })->name('contact');
 
@@ -14,6 +14,6 @@ Route::get('/services', function () {
     return view('pages.services');
 })->name('services');
 
-Route::get('/portfolio', function () {
+Route::get('/portfolios', function () {
     return view('pages.portfolio');
 })->name('portfolio');
