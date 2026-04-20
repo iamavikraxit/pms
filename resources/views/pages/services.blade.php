@@ -1,4 +1,4 @@
-<x-welcome-layout>
+<x-layouts.welcome-layout>
     {{-- ===== Carbon & Cyber Hero Section ===== --}}
     <section class="relative w-full bg-zinc-950 pt-28 sm:pt-36 lg:pt-44 pb-16 sm:pb-24 lg:pb-32 overflow-hidden">
 
@@ -222,4 +222,4 @@
             </a>
         </div>
     </section>
-</x-welcome-layout>
+</x-layouts.welcome-layout>

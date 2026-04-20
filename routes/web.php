@@ -17,3 +17,11 @@ Route::get('/services', function () {
 Route::get('/portfolios', function () {
     return view('pages.portfolio');
 })->name('portfolio');
+
+// Login route for handling form submissions
+Route::post('/login', function () {
+    return response()->json([
+        'message' => 'Login route not yet implemented',
+        'redirect' => '/dashboard'
+    ], 401);
+})->name('login');

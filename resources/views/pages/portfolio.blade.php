@@ -1,4 +1,4 @@
-<x-welcome-layout>
+<x-layouts.welcome-layout>
     {{-- ===== 01. THE RADAR (Hero Section) ===== --}}
     <section
         class="relative w-full h-[90vh] lg:h-screen bg-zinc-950 flex items-center overflow-hidden border-b border-white/5">
@@ -142,7 +142,7 @@
             </div>
         </div>
     </section>
-</x-welcome-layout>
+</x-layouts.welcome-layout>
 
 @push('scripts')
     <style>

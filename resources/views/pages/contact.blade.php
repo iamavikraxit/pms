@@ -1,4 +1,4 @@
-<x-welcome-layout>
+<x-layouts.welcome-layout>
     {{-- ===== Carbon & Cyber Lime Contact Section ===== --}}
     <section class="relative w-full flex flex-col lg:flex-row bg-zinc-950 min-h-screen">
 
@@ -207,4 +207,4 @@
         </div>
 
     </section>
-</x-welcome-layout>
+</x-layouts.welcome-layout>

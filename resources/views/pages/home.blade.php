@@ -1,4 +1,4 @@
-<x-welcome-layout>
+<x-layouts.welcome-layout>
 
     <x-home.hero-section />
 
@@ -14,4 +14,4 @@
 
     <x-home.cta-section />
 
-</x-welcome-layout>
+</x-layouts.welcome-layout>

@@ -35,7 +35,8 @@
 
                 {{-- Home Link --}}
                 <a href="{{ route('home') }}" id="navHome"
-                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 {{ request()->routeIs('home') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 
+                    {{ request()->routeIs('home') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
                     Home
                     @if (request()->routeIs('home'))
                         <span
@@ -45,7 +46,8 @@
 
                 {{-- Services Link --}}
                 <a href="{{ route('services') }}" id="navServices"
-                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 {{ request()->routeIs('services') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 
+                    {{ request()->routeIs('services') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
                     Services
                     @if (request()->routeIs('services'))
                         <span
@@ -55,7 +57,8 @@
 
                 {{-- Portfolio Link --}}
                 <a href="{{ route('portfolio') }}" id="navPortfolio"
-                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 {{ request()->routeIs('portfolio') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 
+                    {{ request()->routeIs('portfolio') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
                     Portfolio
                     @if (request()->routeIs('portfolio'))
                         <span
@@ -65,9 +68,21 @@
 
                 {{-- Contact Link --}}
                 <a href="{{ route('contact') }}" id="navContact"
-                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 {{ request()->routeIs('contact') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 
+                    {{ request()->routeIs('contact') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
                     Contact
                     @if (request()->routeIs('contact'))
+                        <span
+                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-lime-400 opacity-100"></span>
+                    @endif
+                </a>
+
+                {{-- Dashboard Link (For Authenticated Users with Proper Policy) --}}
+                <a href="#" id="navDashboard"
+                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 
+                    {{ request()->routeIs('dashboard') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
+                    Dashboard
+                    @if (request()->routeIs('dashboard'))
                         <span
                             class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-lime-400 opacity-100"></span>
                     @endif
@@ -108,8 +123,8 @@
 
                         <p class="px-3 pt-1.5 pb-1 text-[0.65rem] font-bold uppercase tracking-widest text-zinc-500">
                             Account</p>
-                        <a href="{{ url('/login') }}" id="authLoginLink" role="menuitem"
-                            class="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-300 transition-colors duration-150 hover:bg-white/5 hover:text-white">
+                        <button onclick="openModal('loginModal')" id="authLoginLink" role="menuitem"
+                            class="w-full text-left flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-300 transition-colors duration-150 hover:bg-white/5 hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-500 flex-shrink-0"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -118,7 +133,7 @@
                                 <line x1="15" y1="12" x2="3" y2="12" />
                             </svg>
                             Sign In
-                        </a>
+                        </button>
 
                         <div class="my-1.5 mx-3 h-px bg-white/5"></div>
 
@@ -226,16 +241,17 @@
             {{-- Auth section --}}
             <p class="px-4 text-[0.65rem] font-bold uppercase tracking-widest text-zinc-600">Account</p>
 
-            <a href="{{ url('/login') }}" id="mobileLoginBtn"
+            <button onclick="openModal('loginModal')" id="mobileLoginBtn"
                 class="flex items-center justify-center gap-2.5 rounded-2xl border border-white/10 bg-zinc-900 px-4 py-3.5 text-[0.9375rem] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-zinc-800">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-400" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-400" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
                     <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
                     <polyline points="10 17 15 12 10 7" />
                     <line x1="15" y1="12" x2="3" y2="12" />
                 </svg>
                 Sign In
-            </a>
+            </button>
 
             <a href="{{ url('/register') }}" id="mobileRegisterBtn"
                 class="flex items-center justify-center gap-2.5 rounded-2xl bg-white px-4 py-3.5 text-[0.9375rem] font-black text-zinc-950 shadow-lg shadow-white/5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-lime-400">
@@ -269,99 +285,102 @@
 </header>
 
 {{-- JavaScript for header interactions (scroll shadow, auth dropdown, mobile menu)  --}}
-@push('scripts')
-    <script>
-        (function() {
-            /* ── Scroll shadow ── */
-            const header = document.getElementById('pmsHeader');
+@once
+    @push('scripts')
+        <script>
+            (function() {
+                /* ── Scroll shadow ── */
+                const header = document.getElementById('pmsHeader');
 
-            function onScroll() {
-                if (window.scrollY > 12) {
-                    header.classList.add('bg-white/92', 'shadow-md');
-                    header.classList.remove('bg-white/75', 'shadow-sm');
-                } else {
-                    header.classList.remove('bg-white/92', 'shadow-md');
-                    header.classList.add('bg-white/75', 'shadow-sm');
+                function onScroll() {
+                    if (window.scrollY > 12) {
+                        header.classList.add('bg-white/92', 'shadow-md');
+                        header.classList.remove('bg-white/75', 'shadow-sm');
+                    } else {
+                        header.classList.remove('bg-white/92', 'shadow-md');
+                        header.classList.add('bg-white/75', 'shadow-sm');
+                    }
                 }
-            }
-            window.addEventListener('scroll', onScroll, {
-                passive: true
-            });
-            onScroll();
+                window.addEventListener('scroll', onScroll, {
+                    passive: true
+                });
+                onScroll();
 
-            /* ── Auth Dropdown ── */
-            const authDropdown = document.getElementById('authDropdown');
-            const authTrigger = document.getElementById('authTrigger');
-            const authMenu = document.getElementById('authMenu');
-            const authChevron = document.getElementById('authChevron');
+                /* ── Auth Dropdown ── */
+                const authDropdown = document.getElementById('authDropdown');
+                const authTrigger = document.getElementById('authTrigger');
+                const authMenu = document.getElementById('authMenu');
+                const authChevron = document.getElementById('authChevron');
 
-            function openDropdown() {
-                authMenu.classList.remove('opacity-0', 'scale-95', 'invisible', 'pointer-events-none');
-                authMenu.classList.add('opacity-100', 'scale-100', 'visible', 'pointer-events-auto');
-                authChevron.style.transform = 'rotate(180deg)';
-                authTrigger.setAttribute('aria-expanded', 'true');
-            }
-
-            function closeDropdown() {
-                authMenu.classList.add('opacity-0', 'scale-95', 'invisible', 'pointer-events-none');
-                authMenu.classList.remove('opacity-100', 'scale-100', 'visible', 'pointer-events-auto');
-                authChevron.style.transform = '';
-                authTrigger.setAttribute('aria-expanded', 'false');
-            }
-
-            let dropdownOpen = false;
-            authTrigger && authTrigger.addEventListener('click', function(e) {
-                e.stopPropagation();
-                dropdownOpen = !dropdownOpen;
-                dropdownOpen ? openDropdown() : closeDropdown();
-            });
-
-            document.addEventListener('click', function(e) {
-                if (authDropdown && !authDropdown.contains(e.target)) {
-                    dropdownOpen = false;
-                    closeDropdown();
+                function openDropdown() {
+                    authMenu.classList.remove('opacity-0', 'scale-95', 'invisible', 'pointer-events-none');
+                    authMenu.classList.add('opacity-100', 'scale-100', 'visible', 'pointer-events-auto');
+                    authChevron.style.transform = 'rotate(180deg)';
+                    authTrigger.setAttribute('aria-expanded', 'true');
                 }
-            });
 
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && dropdownOpen) {
-                    dropdownOpen = false;
-                    closeDropdown();
+                function closeDropdown() {
+                    authMenu.classList.add('opacity-0', 'scale-95', 'invisible', 'pointer-events-none');
+                    authMenu.classList.remove('opacity-100', 'scale-100', 'visible', 'pointer-events-auto');
+                    authChevron.style.transform = '';
+                    authTrigger.setAttribute('aria-expanded', 'false');
                 }
-            });
 
-            /* ── Mobile Menu ── */
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const hLine1 = document.getElementById('hLine1');
-            const hLine2 = document.getElementById('hLine2');
-            const hLine3 = document.getElementById('hLine3');
+                let dropdownOpen = false;
+                authTrigger && authTrigger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    dropdownOpen = !dropdownOpen;
+                    dropdownOpen ? openDropdown() : closeDropdown();
+                });
 
-            let menuOpen = false;
+                document.addEventListener('click', function(e) {
+                    if (authDropdown && !authDropdown.contains(e.target)) {
+                        dropdownOpen = false;
+                        closeDropdown();
+                    }
+                });
 
-            function openMobileMenu() {
-                mobileMenu.classList.remove('hidden');
-                // Animate hamburger → X
-                hLine1.style.transform = 'rotate(45deg) translate(4px, 4px)';
-                hLine2.style.opacity = '0';
-                hLine3.style.transform = 'rotate(-45deg) translate(4px, -4px)';
-                mobileMenuBtn.setAttribute('aria-expanded', 'true');
-                mobileMenu.setAttribute('aria-hidden', 'false');
-            }
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && dropdownOpen) {
+                        dropdownOpen = false;
+                        closeDropdown();
+                    }
+                });
 
-            function closeMobileMenu() {
-                mobileMenu.classList.add('hidden');
-                hLine1.style.transform = '';
-                hLine2.style.opacity = '1';
-                hLine3.style.transform = '';
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                mobileMenu.setAttribute('aria-hidden', 'true');
-            }
+                /* ── Mobile Menu ── */
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                const mobileMenu = document.getElementById('mobileMenu');
+                const hLine1 = document.getElementById('hLine1');
+                const hLine2 = document.getElementById('hLine2');
+                const hLine3 = document.getElementById('hLine3');
 
-            mobileMenuBtn && mobileMenuBtn.addEventListener('click', function() {
-                menuOpen = !menuOpen;
-                menuOpen ? openMobileMenu() : closeMobileMenu();
-            });
-        })();
-    </script>
-@endpush
+                let menuOpen = false;
+
+                function openMobileMenu() {
+                    mobileMenu.classList.remove('hidden');
+                    // Animate hamburger → X
+                    hLine1.style.transform = 'rotate(45deg) translate(4px, 4px)';
+                    hLine2.style.opacity = '0';
+                    hLine3.style.transform = 'rotate(-45deg) translate(4px, -4px)';
+                    mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                    mobileMenu.setAttribute('aria-hidden', 'false');
+                }
+
+                function closeMobileMenu() {
+                    mobileMenu.classList.add('hidden');
+                    hLine1.style.transform = '';
+                    hLine2.style.opacity = '1';
+                    hLine3.style.transform = '';
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenu.setAttribute('aria-hidden', 'true');
+                }
+
+                mobileMenuBtn && mobileMenuBtn.addEventListener('click', function() {
+                    menuOpen = !menuOpen;
+                    menuOpen ? openMobileMenu() : closeMobileMenu();
+                });
+            })
+            ();
+        </script>
+    @endpush
+@endonce
