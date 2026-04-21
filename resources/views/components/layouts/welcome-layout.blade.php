@@ -136,7 +136,7 @@
     <div class="global-loader" id="globalLoader">
         <div class="loader-content">
             <div class="spinner"></div>
-            <p class="loader-text">PixelMoment Studio</p>
+            {{-- <p class="loader-text">PixelMoment Studio</p> --}}
         </div>
     </div>
 
@@ -152,11 +152,27 @@
     @include('pages.login-modal')
 
     <script>
+        // Global loader state management
+        window.loaderState = {
+            imagesLoaded: false,
+            pendingRequests: 0,
+            isReady: false
+        };
+
         // Function to hide loader
         function hideLoader() {
             const loader = document.getElementById('globalLoader');
-            if (loader) {
+            if (loader && !loader.classList.contains('hidden')) {
                 loader.classList.add('hidden');
+            }
+        }
+
+        // Function to check if loader should be hidden
+        function checkLoaderReady() {
+            if (window.loaderState.imagesLoaded && window.loaderState.pendingRequests === 0 && !window.loaderState.isReady) {
+                window.loaderState.isReady = true;
+                // Small delay for smooth transition
+                setTimeout(hideLoader, 200);
             }
         }
 
@@ -167,8 +183,9 @@
             const totalImages = images.length;
 
             if (totalImages === 0) {
-                // No images, hide loader immediately
-                hideLoader();
+                // No images, mark as loaded
+                window.loaderState.imagesLoaded = true;
+                checkLoaderReady();
                 return;
             }
 
@@ -181,13 +198,15 @@
                     img.addEventListener('load', () => {
                         loadedCount++;
                         if (loadedCount === totalImages) {
-                            hideLoader();
+                            window.loaderState.imagesLoaded = true;
+                            checkLoaderReady();
                         }
                     });
                     img.addEventListener('error', () => {
                         loadedCount++;
                         if (loadedCount === totalImages) {
-                            hideLoader();
+                            window.loaderState.imagesLoaded = true;
+                            checkLoaderReady();
                         }
                     });
                 }
@@ -195,18 +214,41 @@
 
             // If all images were already loaded
             if (loadedCount === totalImages) {
-                hideLoader();
+                window.loaderState.imagesLoaded = true;
+                checkLoaderReady();
             }
         }
 
-        // Hide loader when page is fully loaded, but also check images specifically
+        // Function to register a server request (call this before making API calls)
+        window.registerServerRequest = function() {
+            window.loaderState.pendingRequests++;
+        };
+
+        // Function to mark a server request as complete (call this after receiving response)
+        window.completeServerRequest = function() {
+            window.loaderState.pendingRequests = Math.max(0, window.loaderState.pendingRequests - 1);
+            checkLoaderReady();
+        };
+
+        // Function to manually hide loader (for custom scenarios)
+        window.hidePageLoader = function() {
+            window.loaderState.isReady = true;
+            hideLoader();
+        };
+
+        // Initialize when page loads
         window.addEventListener('load', function() {
             // Give a small delay to ensure DOM is fully ready
             setTimeout(checkAllImagesLoaded, 100);
         });
 
-        // Fallback: hide loader after 10 seconds maximum
-        setTimeout(hideLoader, 10000);
+        // Fallback: hide loader after 15 seconds maximum
+        setTimeout(function() {
+            if (!window.loaderState.isReady) {
+                window.loaderState.isReady = true;
+                hideLoader();
+            }
+        }, 15000);
 
         document.addEventListener('DOMContentLoaded', function() {
             // Open modal after a short delay only on the first visit
