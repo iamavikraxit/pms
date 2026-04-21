@@ -40,10 +40,8 @@
         <x-site-footer />
     </div>
 
-    {{-- Include Login Modal conditionally --}}
-    @if (request()->routeIs('home'))
-        @include('pages.login-modal')
-    @endif
+    {{-- Include Login Modal on every page so header login buttons work globally --}}
+    @include('pages.login-modal')
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
