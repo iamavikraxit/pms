@@ -72,11 +72,11 @@
             width: 100%;
             height: 100%;
             border: 3px solid transparent;
-            border-top: 3px solid #ec4899;
-            border-right: 3px solid #f43f5e;
+            border-top: 3px solid #65a30d;
+            border-right: 3px solid #4d7c0f;
             border-radius: 50%;
             animation: spin 1.2s linear infinite;
-            box-shadow: 0 0 25px rgba(236, 72, 153, 0.4);
+            box-shadow: 0 0 25px rgba(101, 163, 13, 0.4);
         }
 
         .spinner::after {
@@ -87,8 +87,8 @@
             top: 10px;
             left: 10px;
             border: 3px solid transparent;
-            border-bottom: 3px solid #06b6d4;
-            border-left: 3px solid #0891b2;
+            border-bottom: 3px solid #84cc16;
+            border-left: 3px solid #a3e635;
             border-radius: 50%;
             animation: spin-reverse 0.8s linear infinite;
         }
@@ -116,7 +116,7 @@
             color: #1e293b;
             font-weight: 600;
             letter-spacing: 0.5px;
-            background: linear-gradient(135deg, #3b82f6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #65a30d 0%, #84cc16 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -137,7 +137,6 @@
         <div class="loader-content">
             <div class="spinner"></div>
             <p class="loader-text">PixelMoment Studio</p>
-            <p class="loader-subtext">Preparing your experience...</p>
         </div>
     </div>
 
@@ -153,13 +152,61 @@
     @include('pages.login-modal')
 
     <script>
-        // Hide loader when page is fully loaded
-        window.addEventListener('load', function() {
+        // Function to hide loader
+        function hideLoader() {
             const loader = document.getElementById('globalLoader');
             if (loader) {
                 loader.classList.add('hidden');
             }
+        }
+
+        // Function to check if all images are loaded
+        function checkAllImagesLoaded() {
+            const images = document.querySelectorAll('img');
+            let loadedCount = 0;
+            const totalImages = images.length;
+
+            if (totalImages === 0) {
+                // No images, hide loader immediately
+                hideLoader();
+                return;
+            }
+
+            images.forEach(img => {
+                if (img.complete && img.naturalHeight !== 0) {
+                    // Image already loaded
+                    loadedCount++;
+                } else {
+                    // Wait for load or error
+                    img.addEventListener('load', () => {
+                        loadedCount++;
+                        if (loadedCount === totalImages) {
+                            hideLoader();
+                        }
+                    });
+                    img.addEventListener('error', () => {
+                        loadedCount++;
+                        if (loadedCount === totalImages) {
+                            hideLoader();
+                        }
+                    });
+                }
+            });
+
+            // If all images were already loaded
+            if (loadedCount === totalImages) {
+                hideLoader();
+            }
+        }
+
+        // Hide loader when page is fully loaded, but also check images specifically
+        window.addEventListener('load', function() {
+            // Give a small delay to ensure DOM is fully ready
+            setTimeout(checkAllImagesLoaded, 100);
         });
+
+        // Fallback: hide loader after 10 seconds maximum
+        setTimeout(hideLoader, 10000);
 
         document.addEventListener('DOMContentLoaded', function() {
             // Open modal after a short delay only on the first visit
