@@ -28,10 +28,119 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+
+        /* Global Loader Styles */
+        .global-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .global-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .spinner {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .spinner::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-top: 3px solid #ec4899;
+            border-right: 3px solid #f43f5e;
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.4);
+        }
+
+        .spinner::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            top: 10px;
+            left: 10px;
+            border: 3px solid transparent;
+            border-bottom: 3px solid #06b6d4;
+            border-left: 3px solid #0891b2;
+            border-radius: 50%;
+            animation: spin-reverse 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin-reverse {
+            0% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .loader-text {
+            font-size: 16px;
+            color: #1e293b;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #3b82f6 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .loader-subtext {
+            font-size: 13px;
+            color: #94a3b8;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
     </style>
 </head>
 
 <body class="min-h-screen bg-white text-slate-900 antialiased">
+    <!-- Global Loader -->
+    <div class="global-loader" id="globalLoader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p class="loader-text">PixelMoment Studio</p>
+            <p class="loader-subtext">Preparing your experience...</p>
+        </div>
+    </div>
+
     <div class="flex min-h-screen flex-col">
         <x-site-header />
         <main class="relative flex-1 w-full">
@@ -44,6 +153,14 @@
     @include('pages.login-modal')
 
     <script>
+        // Hide loader when page is fully loaded
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('globalLoader');
+            if (loader) {
+                loader.classList.add('hidden');
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             // Open modal after a short delay only on the first visit
             if (!localStorage.getItem('loginModalShown')) {
