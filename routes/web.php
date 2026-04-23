@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthenticatedController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,10 +20,8 @@ Route::get('/portfolios', function () {
     return view('pages.portfolio');
 })->name('portfolio');
 
-// Login route for handling form submissions
-Route::post('/login', function () {
-    return response()->json([
-        'message' => 'Login route not yet implemented',
-        'redirect' => '/dashboard'
-    ], 401);
-})->name('login');
+Route::post('/login', [AuthenticatedController::class, 'login'])->name('login');
+
+Route::post('/logout', [AuthenticatedController::class, 'logout'])->name('logout');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

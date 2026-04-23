@@ -1,13 +1,13 @@
 {{-- Login Modal Component --}}
 
 <x-modal.open-modal id="loginModal" title="Sign In to Your Account" size="lg" bg-class="bg-zinc-800">
-    <form id="loginForm" class="space-y-5">
+    <form id="loginForm" class="space-y-5" method="POST" action="{{ route('login') }}">
         @csrf
 
         {{-- Email Input --}}
         <div class="space-y-2">
             <label for="email" class="block text-sm font-medium text-white">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com"
+            <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="you@example.com"
                 class="w-full rounded-lg border border-white/10 bg-zinc-800/50 px-4 py-2.5 text-white placeholder-zinc-500 transition-all duration-200 focus:border-lime-400/50 focus:outline-none focus:ring-2 focus:ring-lime-400/20"
                 required />
         </div>
@@ -34,64 +34,34 @@
 
         {{-- Error Messages --}}
         <div id="loginError"
-            class="hidden rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+            class="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300 {{ $errors->first('login') || $errors->first('email') || $errors->first('password') ? '' : 'hidden' }}">
+            {{ $errors->first('login') ?: $errors->first('email') ?: $errors->first('password') }}
         </div>
 
-        {{-- Submit Button & Close --}}
-        @slot('footer')
+        {{-- Submit Button --}}
+        <div class="flex justify-end pt-2">
             <button type="submit"
-                class="ml-auto rounded-lg bg-lime-400 px-3 py-2 text-sm font-semibold text-zinc-950 transition-all duration-200 hover:bg-lime-300 
-                focus:outline-none focus:ring-2 focus:ring-lime-400/50">
+                class="rounded-lg bg-lime-400 px-3 py-2 text-sm font-semibold text-zinc-950 transition-all duration-200 hover:bg-lime-300 focus:outline-none focus:ring-2 focus:ring-lime-400/50">
                 Sign In
             </button>
-        @endslot
+        </div>
     </form>
 </x-modal.open-modal>
 
-@once
+@if ($errors->any() || session('showLoginModal'))
     @push('scripts')
         <script>
-            document.getElementById('loginForm').addEventListener('submit', async (e) => {
-                e.preventDefault();
-
-                const formData = new FormData(e.target);
-                const errorDiv = document.getElementById('loginError');
-                const submitBtn = e.target.querySelector('button[type="submit"]');
-
-                // Show loading state
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Signing In...';
-                errorDiv.classList.add('hidden');
-
-                try {
-                    const response = await fetch('/login', {
-                        method: 'POST',
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'Accept': 'application/json',
-                        },
-                        body: formData
-                    });
-
-                    const data = await response.json();
-
-                    if (response.ok) {
-                        // Login successful
-                        window.location.href = data.redirect || '/dashboard';
-                    } else {
-                        // Show error message
-                        errorDiv.textContent = data.message || 'Login failed. Please try again.';
-                        errorDiv.classList.remove('hidden');
-                    }
-                } catch (error) {
-                    errorDiv.textContent = 'An error occurred. Please try again.';
-                    errorDiv.classList.remove('hidden');
-                    console.error('Login error:', error);
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Sign In';
+            function openLoginModalIfNeeded() {
+                if (typeof openModal === 'function') {
+                    openModal('loginModal');
                 }
-            });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', openLoginModalIfNeeded);
+            } else {
+                openLoginModalIfNeeded();
+            }
         </script>
     @endpush
-@endonce
+@endif

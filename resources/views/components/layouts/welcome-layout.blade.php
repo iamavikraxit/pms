@@ -141,11 +141,11 @@
     </div>
 
     <div class="flex min-h-screen flex-col">
-        <x-site-header />
+        <x-layouts.site-header />
         <main class="relative flex-1 w-full">
             {{ $slot }}
         </main>
-        <x-site-footer />
+        <x-layouts.site-footer />
     </div>
 
     {{-- Include Login Modal on every page so header login buttons work globally --}}
