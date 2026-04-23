@@ -76,18 +76,6 @@
                             class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-lime-400 opacity-100"></span>
                     @endif
                 </a>
-
-                {{-- Dashboard Link (For Authenticated Users with Proper Policy) --}}
-                <a href="#" id="navDashboard"
-                    class="relative px-4 py-2 rounded-xl text-sm transition-colors duration-200 hover:bg-white/5 
-                    {{ request()->routeIs('dashboard') ? 'font-semibold text-white' : 'font-medium text-zinc-400 hover:text-white' }}">
-                    Dashboard
-                    @if (request()->routeIs('dashboard'))
-                        <span
-                            class="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-lime-400 opacity-100"></span>
-                    @endif
-                </a>
-
             </nav>
 
             {{-- ── Desktop Right ── --}}
@@ -104,7 +92,11 @@
                             <circle cx="12" cy="8" r="4" />
                             <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
                         </svg>
-                        Account
+                        @auth
+                            {{ Auth::user()->name ?? 'Account' }}
+                        @else
+                            Account
+                        @endauth
                         {{-- Chevron --}}
                         <svg id="authChevron" xmlns="http://www.w3.org/2000/svg"
                             class="h-3.5 w-3.5 text-zinc-500 transition-transform duration-200 group-hover:rotate-180"
@@ -121,35 +113,72 @@
                         group-hover:visible group-hover:pointer-events-auto group-hover:opacity-100 group-hover:scale-100
                         before:absolute before:-top-[10px] before:left-0 before:h-[10px] before:w-full before:content-['']">
 
-                        <p class="px-3 pt-1.5 pb-1 text-[0.65rem] font-bold uppercase tracking-widest text-zinc-500">
-                            Account</p>
-                        <button onclick="openModal('loginModal')" id="authLoginLink" role="menuitem"
-                            class="w-full text-left flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-300 transition-colors duration-150 hover:bg-white/5 hover:text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-500 flex-shrink-0"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-                                <polyline points="10 17 15 12 10 7" />
-                                <line x1="15" y1="12" x2="3" y2="12" />
-                            </svg>
-                            Sign In
-                        </button>
+                        @auth
+                            {{-- Authenticated User Menu --}}
+                            <p class="px-3 pt-1.5 pb-1 text-[0.65rem] font-bold uppercase tracking-widest text-zinc-500">
+                                {{ Auth::user()->email ?? '' }}</p>
 
-                        <div class="my-1.5 mx-3 h-px bg-white/5"></div>
+                            <a href="{{ route('dashboard') }}" role="menuitem" target="_blank"
+                                class="w-full text-left flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-300 transition-colors duration-150 hover:bg-white/5 hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-500 flex-shrink-0"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="7" height="7" />
+                                    <rect x="14" y="3" width="7" height="7" />
+                                    <rect x="14" y="14" width="7" height="7" />
+                                    <rect x="3" y="14" width="7" height="7" />
+                                </svg>
+                                Dashboard
+                            </a>
 
-                        {{-- High contrast register button (Cyber Lime) --}}
-                        <a href="{{ url('/register') }}" id="authRegisterLink" role="menuitem"
-                            class="mt-1 flex items-center gap-2.5 rounded-xl bg-white px-3 py-2.5 text-sm font-bold text-zinc-950 shadow-md transition-all duration-150 hover:bg-lime-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-900 flex-shrink-0"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                                <circle cx="9" cy="7" r="4" />
-                                <line x1="19" y1="8" x2="19" y2="14" />
-                                <line x1="22" y1="11" x2="16" y2="11" />
-                            </svg>
-                            Create Account
-                        </a>
+                            <div class="my-1.5 mx-3 h-px bg-white/5"></div>
+
+                            <form action="{{ route('logout') }}" method="POST" class="w-full">
+                                @csrf
+                                <button type="submit" role="menuitem"
+                                    class="w-full text-left flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-300 transition-colors duration-150 hover:bg-white/5 hover:text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-500 flex-shrink-0"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                        <polyline points="16 17 21 12 16 7" />
+                                        <line x1="21" y1="12" x2="9" y2="12" />
+                                    </svg>
+                                    Sign Out
+                                </button>
+                            </form>
+                        @else
+                            {{-- Unauthenticated User Menu --}}
+                            <p class="px-3 pt-1.5 pb-1 text-[0.65rem] font-bold uppercase tracking-widest text-zinc-500">
+                                Account</p>
+                            <button onclick="openModal('loginModal')" id="authLoginLink" role="menuitem"
+                                class="w-full text-left flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-zinc-300 transition-colors duration-150 hover:bg-white/5 hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-500 flex-shrink-0"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                                    <polyline points="10 17 15 12 10 7" />
+                                    <line x1="15" y1="12" x2="3" y2="12" />
+                                </svg>
+                                Sign In
+                            </button>
+
+                            <div class="my-1.5 mx-3 h-px bg-white/5"></div>
+
+                            {{-- High contrast register button (Cyber Lime) --}}
+                            <a href="{{ url('/register') }}" id="authRegisterLink" role="menuitem"
+                                class="mt-1 flex items-center gap-2.5 rounded-xl bg-white px-3 py-2.5 text-sm font-bold text-zinc-950 shadow-md transition-all duration-150 hover:bg-lime-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-900 flex-shrink-0"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                    <circle cx="9" cy="7" r="4" />
+                                    <line x1="19" y1="8" x2="19" y2="14" />
+                                    <line x1="22" y1="11" x2="16" y2="11" />
+                                </svg>
+                                Create Account
+                            </a>
+                        @endauth
                     </div>
                 </div>
 
@@ -239,32 +268,70 @@
             <div class="my-2 h-px bg-white/5 mx-2"></div>
 
             {{-- Auth section --}}
-            <p class="px-4 text-[0.65rem] font-bold uppercase tracking-widest text-zinc-600">Account</p>
+            <p class="px-4 text-[0.65rem] font-bold uppercase tracking-widest text-zinc-600">
+                @auth
+                    {{ Auth::user()->name ?? 'Account' }}
+                @else
+                    Account
+                @endauth
+            </p>
 
-            <button onclick="openModal('loginModal')" id="mobileLoginBtn"
-                class="flex items-center justify-center gap-2.5 rounded-2xl border border-white/10 bg-zinc-900 px-4 py-3.5 text-[0.9375rem] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-zinc-800">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-400" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-                    <polyline points="10 17 15 12 10 7" />
-                    <line x1="15" y1="12" x2="3" y2="12" />
-                </svg>
-                Sign In
-            </button>
+            @auth
+                {{-- Authenticated User Mobile Menu --}}
+                <a href="{{ route('dashboard') }}" id="mobileDashboardBtn"
+                    class="flex items-center justify-center gap-2.5 rounded-2xl border border-white/10 bg-zinc-900 px-4 py-3.5 text-[0.9375rem] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-zinc-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-400" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7" />
+                        <rect x="14" y="3" width="7" height="7" />
+                        <rect x="14" y="14" width="7" height="7" />
+                        <rect x="3" y="14" width="7" height="7" />
+                    </svg>
+                    Dashboard
+                </a>
 
-            <a href="{{ url('/register') }}" id="mobileRegisterBtn"
-                class="flex items-center justify-center gap-2.5 rounded-2xl bg-white px-4 py-3.5 text-[0.9375rem] font-black text-zinc-950 shadow-lg shadow-white/5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-lime-400">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-900" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <line x1="19" y1="8" x2="19" y2="14" />
-                    <line x1="22" y1="11" x2="16" y2="11" />
-                </svg>
-                Create Account
-            </a>
+                <form action="{{ route('logout') }}" method="POST" class="w-full px-4">
+                    @csrf
+                    <button type="submit" id="mobileLogoutBtn"
+                        class="w-full flex items-center justify-center gap-2.5 rounded-2xl bg-white px-4 py-3.5 text-[0.9375rem] font-black text-zinc-950 shadow-lg shadow-white/5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-lime-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-900" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                            <polyline points="16 17 21 12 16 7" />
+                            <line x1="21" y1="12" x2="9" y2="12" />
+                        </svg>
+                        Sign Out
+                    </button>
+                </form>
+            @else
+                {{-- Unauthenticated User Mobile Menu --}}
+                <button onclick="openModal('loginModal')" id="mobileLoginBtn"
+                    class="flex items-center justify-center gap-2.5 rounded-2xl border border-white/10 bg-zinc-900 px-4 py-3.5 text-[0.9375rem] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-zinc-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-400" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                        <polyline points="10 17 15 12 10 7" />
+                        <line x1="15" y1="12" x2="3" y2="12" />
+                    </svg>
+                    Sign In
+                </button>
+
+                <a href="{{ url('/register') }}" id="mobileRegisterBtn"
+                    class="flex items-center justify-center gap-2.5 rounded-2xl bg-white px-4 py-3.5 text-[0.9375rem] font-black text-zinc-950 shadow-lg shadow-white/5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-lime-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] text-zinc-900" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <line x1="19" y1="8" x2="19" y2="14" />
+                        <line x1="22" y1="11" x2="16" y2="11" />
+                    </svg>
+                    Create Account
+                </a>
+            @endauth
 
             {{-- Book Now mobile CTA --}}
             <a href="{{ url('/contact') }}" id="mobileBookNow"
