@@ -48,7 +48,7 @@
         <div class="flex flex-1 flex-col min-w-0 h-full relative transition-all duration-300 ease-in-out lg:pl-72">
             <x-layouts.backend-header />
 
-            <main class="flex-1 bg-gray-300 overflow-y-auto custom-scrollbar">
+            <main class="flex-1 bg-gray-200 overflow-y-auto custom-scrollbar">
                 <div class="w-full px-4 py-6 sm:px-8 lg:px-10 pb-20">
                     {{ $slot }}
                 </div>
