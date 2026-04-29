@@ -7,10 +7,9 @@
                         Welcome To
                     </span>
                 </div>
-                <h1 class="text-4xl sm:text-4xl font-black tracking-tight leading-tight text-zinc-900 dark:text-white">
+                <h1 class="text-4xl sm:text-4xl font-black tracking-tight leading-tight text-zinc-900">
                     Studio
-                    <span
-                        class="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-zinc-800 via-lime-500 to-zinc-900 dark:from-white dark:via-lime-400 dark:to-zinc-300">
+                    <span class="text-gray-800">
                         Pixel Moment
                     </span>
                     <span class="text-zinc-400">.</span>
