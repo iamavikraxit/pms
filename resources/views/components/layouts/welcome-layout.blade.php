@@ -7,7 +7,7 @@
     <meta name="description"
         content="PixelMoment Studio — Book professional photographers for weddings, birthdays, corporate events and more. Curated pros, transparent pricing, seamless booking.">
 
-    <title>{{ config('app.name', 'PixelMoment Studio') }} — Book Professional Photographers</title>
+    <title>{{ config('app.name', 'PixelMoment Studio') }}</title>
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
