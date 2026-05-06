@@ -19,11 +19,11 @@
 
 <body class="min-h-screen bg-gradient-to-br from-rose-50 via-white to-slate-100 text-slate-900">
     <div class="flex min-h-screen flex-col">
-        <x-site-header />
+        <x-layouts.site-header />
         <main class="relative flex-1 overflow-hidden">
             {{ $slot }}
         </main>
-        <x-site-footer />
+        <x-layouts.site-footer />
     </div>
     @stack('scripts')
 </body>
