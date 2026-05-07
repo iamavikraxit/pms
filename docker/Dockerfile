@@ -1,3 +1,22 @@
+# Stage 1: Frontend build
+FROM node:20-alpine AS frontend
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# Stage 2: PHP dependencies
+FROM composer:2 AS backend
+WORKDIR /app
+COPY composer*.json ./
+# We use --ignore-platform-reqs because the composer image might not have all PHP extensions, 
+# but the final image will.
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress --ignore-platform-reqs
+COPY . .
+RUN composer dump-autoload --optimize --no-dev
+
+# Stage 3: Final production image
 FROM php:8.4-fpm-alpine
 
 # Install system dependencies
@@ -29,26 +48,23 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
         gd \
         intl
 
-# Install Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-# Set working directory
 WORKDIR /var/www
 
-# Composer environment
-ENV COMPOSER_ALLOW_SUPERUSER=1
-ENV COMPOSER_MEMORY_LIMIT=-1
+# Copy application files from backend stage (includes vendor)
+COPY --from=backend /app .
 
-# Update www-data user to match host UID/GID
+# Copy built assets from frontend stage
+COPY --from=frontend /app/public/build ./public/build
 
-# Copy files
-COPY . .
+# Copy entrypoint script
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# Install dependencies (production mode)
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress
-
-# Permissions
+# Set permissions for Laravel
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 EXPOSE 9000
+
+# Use the entrypoint script to handle runtime optimizations
+ENTRYPOINT ["entrypoint.sh"]
 CMD ["php-fpm"]

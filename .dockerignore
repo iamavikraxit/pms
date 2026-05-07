@@ -4,7 +4,6 @@ vendor
 .git
 .gitignore
 .dockerignore
-docker
 storage/*.key
 .phpunit.result.cache
 npm-debug.log
