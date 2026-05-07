@@ -8,3 +8,9 @@ storage/*.key
 .phpunit.result.cache
 npm-debug.log
 auth.json
+bootstrap/cache/*.php
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/testing/*
+storage/framework/views/*.php
+storage/logs/*.log

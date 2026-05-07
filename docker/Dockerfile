@@ -10,14 +10,12 @@ RUN npm run build
 FROM composer:2 AS backend
 WORKDIR /app
 COPY composer*.json ./
-# We use --ignore-platform-reqs because the composer image might not have all PHP extensions, 
-# but the final image will.
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress --ignore-platform-reqs
-COPY . .
-RUN composer dump-autoload --optimize --no-dev
+# Install dependencies without scripts to avoid 'artisan' not found error
+RUN composer install --no-dev --no-scripts --optimize-autoloader --no-interaction --no-progress --ignore-platform-reqs
 
 # Stage 3: Final production image
 FROM php:8.4-fpm-alpine
+ENV APP_ENV=production
 
 # Install system dependencies
 RUN apk add --no-cache \
@@ -50,8 +48,11 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 
 WORKDIR /var/www
 
-# Copy application files from backend stage (includes vendor)
-COPY --from=backend /app .
+# Copy application files (excluding what's in .dockerignore)
+COPY . .
+
+# Copy vendor from backend stage
+COPY --from=backend /app/vendor ./vendor
 
 # Copy built assets from frontend stage
 COPY --from=frontend /app/public/build ./public/build
@@ -59,6 +60,10 @@ COPY --from=frontend /app/public/build ./public/build
 # Copy entrypoint script
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Now that we have all files and PHP extensions, run the Laravel discovery scripts
+RUN php artisan package:discover --ansi && \
+    php artisan vendor:publish --tag=laravel-assets --ansi --force
 
 # Set permissions for Laravel
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
