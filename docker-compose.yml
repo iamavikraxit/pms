@@ -85,6 +85,19 @@ services:
     networks:
       - laravel
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pms_pgadmin
+    hostname: pgadmin.pms
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pms@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: pms
+    networks:
+      - laravel
+    depends_on:
+      - db
+
 networks:
   laravel:
 
