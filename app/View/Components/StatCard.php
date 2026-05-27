@@ -53,6 +53,30 @@ class StatCard extends Component
                 'border' => 'border-rose-200 dark:border-rose-400/30',
             ],
 
+            'violet' => [
+                'text' => 'text-violet-700 dark:text-violet-400',
+                'bg' => 'bg-violet-500 dark:bg-violet-500',
+                'border' => 'border-violet-200 dark:border-violet-400/30',
+            ],
+
+            'indigo' => [
+                'text' => 'text-indigo-700 dark:text-indigo-400',
+                'bg' => 'bg-indigo-500 dark:bg-indigo-500',
+                'border' => 'border-indigo-200 dark:border-indigo-400/30',
+            ],
+
+            'orange' => [
+                'text' => 'text-orange-700 dark:text-orange-400',
+                'bg' => 'bg-orange-500 dark:bg-orange-500',
+                'border' => 'border-orange-200 dark:border-orange-400/30',
+            ],
+
+            'amber' => [
+                'text' => 'text-amber-700 dark:text-amber-400',
+                'bg' => 'bg-amber-500 dark:bg-amber-500',
+                'border' => 'border-amber-200 dark:border-amber-400/30',
+            ],
+
         ];
 
         $this->theme = $themes[$color] ?? $themes['lime'];
