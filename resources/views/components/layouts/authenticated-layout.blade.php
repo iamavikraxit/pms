@@ -19,10 +19,11 @@
         }
 
         .bg-studio-silk {
-            background-color: #fafafa;
+            background-color: #fffdfa;
             background-image:
-                radial-gradient(at 0% 0%, rgba(163, 230, 53, 0.03) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(163, 230, 53, 0.03) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(251, 146, 60, 0.08) 0px, transparent 55%),
+                radial-gradient(at 100% 100%, rgba(254, 215, 170, 0.14) 0px, transparent 55%),
+                radial-gradient(at 50% 50%, rgba(255, 237, 213, 0.09) 0px, transparent 50%);
         }
 
         .custom-scrollbar::-webkit-scrollbar {
@@ -34,21 +35,21 @@
         }
 
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #e4e4e7;
+            background: #fed7aa;
             border-radius: 20px;
             background-clip: content-box;
         }
     </style>
 </head>
 
-<body class="h-screen overflow-hidden text-zinc-100 antialiased selection:bg-lime-400 selection:text-black">
-    <div class="flex h-full w-full relative overflow-hidden">
+<body class="h-screen overflow-hidden text-stone-800 antialiased selection:bg-orange-200 selection:text-orange-950">
+    <div class="flex h-full w-full relative overflow-hidden bg-studio-silk">
         <x-layouts.backend-sidenav />
 
         <div class="flex flex-1 flex-col min-w-0 h-full relative transition-all duration-300 ease-in-out lg:pl-72">
             <x-layouts.backend-header />
 
-            <main class="flex-1 bg-gray-200 overflow-y-auto custom-scrollbar">
+            <main class="flex-1 bg-studio-silk overflow-y-auto custom-scrollbar">
                 <div class="w-full px-4 py-6 sm:px-8 lg:px-10 pb-20">
                     {{ $slot }}
                 </div>
