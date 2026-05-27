@@ -8,22 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedController extends Controller
 {
-    public $credentials = [];
-
     /* Handle the login request */
     public function login(Request $request): RedirectResponse
     {
-        $this->credentials = $request->validate([
+        $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
-            'remember' => ['sometimes', 'boolean'],
+            'remember' => ['sometimes'],
         ]);
 
         $remember = $request->boolean('remember');
 
         if (! Auth::attempt([
-            'email' => $this->credentials['email'],
-            'password' => $this->credentials['password'],
+            'email' => $credentials['email'],
+            'password' => $credentials['password'],
         ], $remember)) {
             return back()
                 ->withErrors(['login' => 'The provided credentials are incorrect.'])
