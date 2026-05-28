@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthenticatedController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermissionController;
 use Illuminate\Support\Facades\Route;
 
 // Redirect the login page to the home page when trying to access it forcefully, as the login form is a modal on the home page
@@ -31,4 +33,7 @@ Route::post('/logout', [AuthenticatedController::class, 'logout'])->name('logout
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/roles', [RoleController::class, 'index'])->name('roles');
+    Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions');
+
 });

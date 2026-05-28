@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class DashboardController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -16,10 +16,10 @@ class DashboardController extends Controller
     }
 
     /**
-     * Display the dashboard.
+     * Display the roles list.
      */
     public function index(): View
     {
-        return view('pages.dashboard');
+        return view('pages.permission.index');
     }
 }
