@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Role;
 
 class RoleController extends Controller
 {
@@ -18,8 +19,14 @@ class RoleController extends Controller
     /**
      * Display the roles list.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        return view('pages.role.index');
+        $search = trim((string) $request->query('search', ''));
+
+        $roles = Role::search($search)
+            ->latest()
+            ->get();
+
+        return view('pages.role.index', compact('roles', 'search'));
     }
 }
