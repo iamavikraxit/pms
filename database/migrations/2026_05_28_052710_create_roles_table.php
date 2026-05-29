@@ -15,6 +15,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('name');
             $table->string('short_name')->nullable();
+            $table->string('guard_name');
             $table->timestamps();
         });
     }

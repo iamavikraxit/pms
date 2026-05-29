@@ -12,16 +12,19 @@ class RoleSeeder extends Seeder
         Role::create([
             'name' => 'Super Admin',
             'short_name' => NULL,
+            'guard_name' => 'web',
         ]);
 
         Role::create([
             'name' => 'Admin',
             'short_name' => NULL,
+            'guard_name' => 'web',
         ]);
 
         Role::create([
             'name' => 'Client',
             'short_name' => NULL,
+            'guard_name' => 'web',
         ]);
     }
 }
