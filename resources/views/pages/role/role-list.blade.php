@@ -1,7 +1,122 @@
-<x-table-component :headers="[
-    ['label' => 'Sl No.', 'field' => 'id', 'align' => 'left'],
-    ['label' => 'Role Name', 'field' => 'name', 'align' => 'center'],
-    ['label' => 'Guard Name', 'field' => 'guard_name', 'align' => 'center'],
-    ['label' => 'Created At', 'field' => 'created_at', 'align' => 'center'],
-    ['label' => 'Actions', 'field' => 'actions', 'align' => 'center'],
-]" {{-- :items="$roles" --}} emptyMessage="No roles defined yet." />
+<div class="overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-xl shadow-orange-950/5">
+    {{-- Search Field --}}
+    <div class="border-b border-orange-100 bg-gradient-to-r from-orange-50/60 via-white to-orange-50/30 px-6 py-5">
+        <div class="relative max-w-md">
+            <x-search-field action="{{ route('roles') }}" name="search" value="{{ request('search') }}"
+                placeholder="Search roles by name..." button-label="Search" />
+            {{-- Add count --}}
+            {{-- <span
+                class="absolute top-1/2 -translate-y-1/2 rounded-full px-2 ml-3 py-0.5 text-sm font-bold text-orange-700">
+                Total : {{ $roles->count() }}
+            </span> --}}
+        </div>
+    </div>
+
+</div>
+
+{{-- Table Wrapper --}}
+<div class="overflow-x-auto rounded-b-2xl">
+    <table class="min-w-[720px] w-full table-auto divide-y divide-orange-100">
+
+        {{-- Table Head --}}
+        <thead class="bg-gradient-to-r from-orange-50 via-white to-orange-50">
+            <tr>
+                <th class="px-6 py-4 text-left text-[11px] font-black uppercase tracking-[0.2em] text-stone-500">
+                    Sl No.
+                </th>
+
+                <th class="px-6 py-4 text-left text-[11px] font-black uppercase tracking-[0.2em] text-stone-500">
+                    Role Name
+                </th>
+
+                <th class="px-6 py-4 text-center text-[11px] font-black uppercase tracking-[0.2em] text-stone-500">
+                    Guard Name
+                </th>
+
+                <th class="px-6 py-4 text-center text-[11px] font-black uppercase tracking-[0.2em] text-stone-500">
+                    Created At
+                </th>
+
+                <th class="px-6 py-4 text-center text-[11px] font-black uppercase tracking-[0.2em] text-stone-500">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+
+        {{-- Table Body --}}
+        <tbody class="divide-y divide-orange-100/70">
+            @forelse ($roles as $index => $role)
+                <tr class="group hover:bg-orange-50/40 transition-all duration-200">
+                    <td class="px-6 py-4 text-sm font-semibold text-stone-700">
+                        {{ $index + 1 }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <div class="font-bold text-stone-800">
+                            {{ $role->name }}
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4 text-center">
+                        <span
+                            class="inline-flex items-center rounded-full border border-orange-200 bg-orange-50 px-3 py-1 text-xs font-bold text-orange-700">
+                            {{ $role->guard_name }}
+                        </span>
+                    </td>
+
+                    <td class="px-6 py-4 text-center text-sm font-medium text-stone-500">
+                        {{ $role->created_at->format('d M Y') }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <div class="flex items-center justify-center gap-2">
+                            <button
+                                class="flex h-10 w-10 items-center justify-center rounded-full border border-blue-200 bg-blue-50 text-blue-600 transition hover:scale-105 hover:bg-blue-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M11 5h2m-1-1v2m6.364 2.636l-9.9 9.9a2 2 0 01-.878.515l-3 1a1 1 0 01-1.264-1.264l1-3a2 2 0 01.515-.878l9.9-9.9a2.121 2.121 0 013 3z" />
+                                </svg>
+                            </button>
+
+                            <button
+                                class="flex h-10 w-10 items-center justify-center rounded-full border border-red-200 bg-red-50 text-red-600 transition hover:scale-105 hover:bg-red-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 7h12M9 7V4h6v3m-7 4v6m4-6v6m4-6v6m-9 4h10a2 2 0 002-2V7H5v12a2 2 0 002 2z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="5" class="px-6 py-16 text-center">
+                        <div class="flex flex-col items-center justify-center gap-3">
+                            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-orange-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-orange-500" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293L6.586 13H4" />
+                                </svg>
+                            </div>
+
+                            <div class="space-y-1">
+                                <h3 class="text-sm font-bold text-stone-700">
+                                    No Roles Found
+                                </h3>
+
+                                <p class="text-sm text-stone-400">
+                                    Create your first role to get started.
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
