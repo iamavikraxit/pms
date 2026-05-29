@@ -19,16 +19,6 @@
 
         {{-- RIGHT: Actions --}}
         <div class="flex items-center gap-2 sm:gap-4 ml-4">
-            {{-- Dark Action Button --}}
-            <button
-                class="hidden md:flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 border border-orange-400/20 text-white px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-md shadow-orange-500/10 active:scale-95 group">
-                <svg class="w-4 h-4 text-white group-hover:rotate-90 transition-transform" fill="none"
-                    stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-width="3" d="M12 4v16m8-8H4" />
-                </svg>
-                <span>New Project</span>
-            </button>
-
             {{-- Notification Button --}}
             <button
                 class="relative flex h-10 w-10 items-center justify-center rounded-xl border border-orange-100 bg-white text-stone-600 hover:bg-orange-50 hover:text-orange-600 transition-all shadow-sm">
