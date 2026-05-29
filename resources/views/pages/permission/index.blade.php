@@ -12,4 +12,6 @@
                 </h1>
             </div>
         </header>
+
+        @include('pages.permission.permission-list')
 </x-layouts.authenticated-layout>
