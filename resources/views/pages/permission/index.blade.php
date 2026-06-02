@@ -11,6 +11,10 @@
                     </span>
                 </h1>
             </div>
+
+            <button class="px-5 py-3 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold text-xs shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 hover:-translate-y-0.5 transition-all duration-300">
+                + Create New
+            </button>
         </header>
 
         @include('pages.permission.permission-list')
