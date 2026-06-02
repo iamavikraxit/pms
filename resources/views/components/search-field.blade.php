@@ -13,7 +13,7 @@
             <input id="{{ $inputId }}" data-search-input type="search" name="{{ $name }}"
                 value="{{ $value }}" placeholder="{{ $placeholder }}" autocomplete="off"
                 aria-label="{{ $placeholder }}"
-                class="w-2/3 rounded-xl border border-orange-200 bg-white/80 py-3 pl-12 {{ $inputPaddingClass }} text-sm font-medium text-stone-700 shadow-sm outline-none placeholder:text-stone-400 focus:border-orange-400 focus:ring-4 focus:ring-orange-100">
+                class="w-72 rounded-xl border border-orange-200 bg-white/80 py-3 pl-12 {{ $inputPaddingClass }} text-sm font-medium text-stone-700 shadow-sm outline-none placeholder:text-stone-400 focus:border-orange-400 focus:ring-4 focus:ring-orange-100">
 
             @if ($withButton)
                 <button type="submit"
