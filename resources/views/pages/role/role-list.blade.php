@@ -105,7 +105,7 @@
                             </div>
 
                             <div class="space-y-1">
-                                <h3 class="text-sm font-bold text-stone-700">
+                                <h3 class="text-lg font-bold text-stone-700">
                                     No Roles Found
                                 </h3>
                             </div>
