@@ -108,10 +108,6 @@
                                 <h3 class="text-sm font-bold text-stone-700">
                                     No Roles Found
                                 </h3>
-
-                                <p class="text-sm text-stone-400">
-                                    Create your first role to get started.
-                                </p>
                             </div>
                         </div>
                     </td>
