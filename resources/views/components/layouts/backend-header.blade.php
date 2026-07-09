@@ -41,7 +41,9 @@
                 <div class="hidden lg:block text-left max-w-[120px]">
                     <p class="text-[10px] font-black uppercase tracking-tighter text-stone-900 leading-none truncate">
                         {{ auth()->user()->name }}</p>
-                    <p class="text-[9px] font-bold text-stone-400 uppercase mt-1">Admin</p>
+                    <p class="text-[9px] font-bold text-stone-400 uppercase mt-1">
+                        {{ auth()->user()->roles->pluck('name')->join(', ') ?: 'Guest' }}
+                    </p>
                 </div>
             </button>
         </div>
