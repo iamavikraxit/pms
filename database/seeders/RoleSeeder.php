@@ -22,6 +22,12 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::create([
+            'name' => 'Photographer',
+            'short_name' => NULL,
+            'guard_name' => 'web',
+        ]);
+
+        Role::create([
             'name' => 'Client',
             'short_name' => NULL,
             'guard_name' => 'web',
