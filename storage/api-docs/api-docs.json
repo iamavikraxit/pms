@@ -1,0 +1,27 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Photographer Management System API",
+        "description": "API documentation",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/health": {
+            "get": {
+                "summary": "Health check",
+                "operationId": "098b534ccd88b836392ca6fac0f2bc9b",
+                "responses": {
+                    "200": {
+                        "description": "API is healthy"
+                    }
+                },
+                "servers": [
+                    {
+                        "url": "http://app.pms.test:8001/",
+                        "description": "Local Server"
+                    }
+                ]
+            }
+        }
+    }
+}
