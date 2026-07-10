@@ -50,43 +50,54 @@
                     <span>Dashboard</span>
                 </a>
 
-                {{-- Role Managements --}}
+                {{-- User Management Dropdown --}}
                 <div>
-                    <button id="rolesDropdownBtn" onclick="toggleDropdown('rolesDropdown')"
+                    <button id="userManagementDropdownBtn" onclick="toggleDropdown('userManagementDropdown')"
                         class="w-full group flex items-center justify-between gap-3.5 rounded-2xl px-4 py-3 text-sm font-bold transition-all duration-300
-                    {{ request()->routeIs('roles') || request()->routeIs('permissions')
+                    {{ request()->routeIs('users') || request()->routeIs('roles') || request()->routeIs('permissions')
                         ? 'text-orange-600 bg-orange-50/50'
                         : 'text-stone-600 hover:text-orange-600 hover:bg-orange-50/50' }}">
 
                         <div class="flex items-center gap-3.5">
                             <svg class="h-5 w-5 transition-colors
-                                {{ request()->routeIs('roles') || request()->routeIs('permissions')
+                                {{ request()->routeIs('users') || request()->routeIs('roles') || request()->routeIs('permissions')
                                     ? 'text-orange-600'
                                     : 'text-stone-400 group-hover:text-orange-600' }}"
                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-
                                 <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
 
-                            <span>Roles & Permissions</span>
+                            <span>User Management</span>
                         </div>
 
-                        <svg id="rolesDropdownArrow"
+                        <svg id="userManagementDropdownArrow"
                             class="w-4 h-4 transition-transform duration-300
-                            {{ request()->routeIs('roles') || request()->routeIs('permissions')
+                            {{ request()->routeIs('users') || request()->routeIs('roles') || request()->routeIs('permissions')
                                 ? 'rotate-180 text-orange-600'
                                 : 'text-stone-400 group-hover:text-orange-600' }}"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-
                             <path stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
                                 d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
 
-                    <div id="rolesDropdownMenu"
-                        style="max-height: {{ request()->routeIs('roles') || request()->routeIs('permissions') ? '500px' : '0px' }};"
+                    <div id="userManagementDropdownMenu"
+                        style="max-height: {{ request()->routeIs('users') || request()->routeIs('roles') || request()->routeIs('permissions') ? '500px' : '0px' }};"
                         class="overflow-hidden transition-all duration-300 ease-in-out pl-12 pr-4 space-y-1">
+
+                        {{-- Staff --}}
+                        <a href="{{ route('users') }}"
+                            class="flex items-center gap-2 text-xs font-bold py-2 transition-colors
+                            {{ request()->routeIs('users') ? 'text-orange-600' : 'text-stone-500 hover:text-orange-600' }}">
+
+                            <span
+                                class="h-1.5 w-1.5 rounded-full
+                            {{ request()->routeIs('users') ? 'bg-orange-500' : 'bg-stone-300' }}">
+                            </span>
+
+                            User List
+                        </a>
 
                         {{-- Roles --}}
                         <a href="{{ route('roles') }}"
@@ -346,15 +357,9 @@
                 {{-- Settings Dropdown --}}
                 <div>
                     <button id="settingsDropdownBtn" onclick="toggleDropdown('settingsDropdown')"
-                        class="w-full group flex items-center justify-between gap-3.5 rounded-2xl px-4 py-3 text-sm font-bold transition-all duration-300
-                    {{ request()->routeIs('staff')
-                        ? 'text-orange-600 bg-orange-50/50'
-                        : 'text-stone-600 hover:text-orange-600 hover:bg-orange-50/50' }}">
+                        class="w-full group flex items-center justify-between gap-3.5 rounded-2xl px-4 py-3 text-sm font-bold transition-all duration-300 text-stone-600 hover:text-orange-600 hover:bg-orange-50/50">
                         <div class="flex items-center gap-3.5">
-                            <svg class="h-5 w-5 transition-colors
-                                {{ request()->routeIs('staff')
-                                    ? 'text-orange-600'
-                                    : 'text-stone-400 group-hover:text-orange-600' }}"
+                            <svg class="h-5 w-5 text-stone-400 group-hover:text-orange-600 transition-colors"
                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                     d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -364,31 +369,19 @@
                             <span>Studio Settings</span>
                         </div>
                         <svg id="settingsDropdownArrow"
-                            class="w-4 h-4 transition-transform duration-300
-                            {{ request()->routeIs('staff')
-                                ? 'rotate-180 text-orange-600'
-                                : 'text-stone-400 group-hover:text-orange-600' }}"
+                            class="w-4 h-4 text-stone-400 group-hover:text-orange-600 transition-transform duration-300"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
                                 d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                     <div id="settingsDropdownMenu"
-                        style="max-height: {{ request()->routeIs('staff') ? '500px' : '0px' }};"
+                        style="max-height: 0px;"
                         class="overflow-hidden transition-all duration-300 ease-in-out pl-12 pr-4 space-y-1">
                         <a href="#"
                             class="flex items-center gap-2 text-xs font-bold text-stone-500 hover:text-orange-600 py-2 transition-colors">
                             <span class="h-1.5 w-1.5 rounded-full bg-stone-300 group-hover:bg-orange-500"></span>
                             General Profile
-                        </a>
-                        <a href="{{ route('staff') }}"
-                            class="flex items-center gap-2 text-xs font-bold py-2 transition-colors
-                            {{ request()->routeIs('staff') ? 'text-orange-600' : 'text-stone-500 hover:text-orange-600' }}">
-                            <span
-                                class="h-1.5 w-1.5 rounded-full
-                            {{ request()->routeIs('staff') ? 'bg-orange-500' : 'bg-stone-300' }}">
-                            </span>
-                            Staff & Permissions
                         </a>
                         <a href="#"
                             class="flex items-center gap-2 text-xs font-bold text-stone-500 hover:text-orange-600 py-2 transition-colors">
