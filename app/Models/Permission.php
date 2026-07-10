@@ -18,7 +18,7 @@ class Permission extends Model
 
     public function users(): MorphToMany
     {
-        return $this->morphedByMany(User::class, 'model', 'model_has_permissions');
+        return $this->MorphToMany(User::class, 'model', 'model_has_permissions');
     }
 
     public function scopeSearch(Builder $query, ?string $term): Builder
