@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\AuthenticatedController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\StaffController;
+use App\Http\Controllers\Backend\AuthenticatedController;
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Redirect the login page to the home page when trying to access it forcefully, as the login form is a modal on the home page
@@ -43,9 +43,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/permissions', 'index')->name('permissions');
     });
 
-    Route::controller(StaffController::class)->group(function () {
-        Route::get('/staff', 'index')->name('staff');
-        Route::post('/staff/{user}/permissions', 'updatePermissions')->name('staff.permissions.update');
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/users', 'index')->name('users');
+        Route::post('/users/{user}/permissions', 'updatePermissions')->name('user.permissions.update');
     });
 });
 
